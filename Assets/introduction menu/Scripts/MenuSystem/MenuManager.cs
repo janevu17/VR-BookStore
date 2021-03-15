@@ -56,9 +56,6 @@ public class MenuManager : MonoBehaviour
             panelHistory.RemoveAt(0);
         }
         
-           
-        
-
 
    }
 
