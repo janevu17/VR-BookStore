@@ -421,7 +421,7 @@ GameObject:
   - component: {fileID: 3132526153342211118}
   - component: {fileID: 3132526153342211121}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: MenuUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -434,7 +434,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3132526153342211120}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 3}
   m_LocalScale: {x: 0.005, y: 0.005, z: 1}
   m_Children:
@@ -447,7 +447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.001439929}
+  m_AnchoredPosition: {x: 0, y: -0.0015}
   m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3132526153342211116
@@ -3751,7 +3751,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3132526154288438121}
   m_HandleRect: {fileID: 3132526154288438120}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0.9999854
   m_Size: 0.61
   m_NumberOfSteps: 0
   m_OnValueChanged:
