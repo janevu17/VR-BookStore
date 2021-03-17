@@ -70,11 +70,36 @@ public class check_out_script : MonoBehaviour
     private Button item1_addAmount;
     [SerializeField]
     private Button item1_removeAmount;
+    [SerializeField]
+    private Button item2_addAmount;
+    [SerializeField]
+    private Button item2_removeAmount;
+    [SerializeField]
+    private Button item3_addAmount;
+    [SerializeField]
+    private Button item3_removeAmount;
+    [SerializeField]
+    private Button item4_addAmount;
+    [SerializeField]
+    private Button item4_removeAmount;
+    [SerializeField]
+    private Button item5_addAmount;
+    [SerializeField]
+    private Button item5_removeAmount;
+    [SerializeField]
+    private Button item6_addAmount;
+    [SerializeField]
+    private Button item6_removeAmount;
 
 
     private int itemsInCart = 0;
     private int totalCost = 0;
-    private int numOfItems = 1;
+    private int numOfItems1 = 1;
+    private int numOfItems2 = 1;
+    private int numOfItems3 = 1;
+    private int numOfItems4 = 1;
+    private int numOfItems5 = 1;
+    private int numOfItems6 = 1;
 
     void Start()
     {
@@ -106,6 +131,22 @@ public class check_out_script : MonoBehaviour
 
         Button btn3 = item1_addAmount.GetComponent<Button>();
         Button btn4 = item1_removeAmount.GetComponent<Button>();
+        
+
+        Button btn13 = item2_addAmount.GetComponent<Button>();
+        Button btn14 = item2_removeAmount.GetComponent<Button>();
+
+        Button btn5 = item3_addAmount.GetComponent<Button>();
+        Button btn6 = item3_removeAmount.GetComponent<Button>();
+
+        Button btn7 = item4_addAmount.GetComponent<Button>();
+        Button btn8 = item4_removeAmount.GetComponent<Button>();
+
+        Button btn9 = item5_addAmount.GetComponent<Button>();
+        Button btn10 = item5_removeAmount.GetComponent<Button>();
+
+        Button btn11 = item6_addAmount.GetComponent<Button>();
+        Button btn12 = item6_removeAmount.GetComponent<Button>();
     }
 
 
@@ -118,7 +159,7 @@ public class check_out_script : MonoBehaviour
                 Debug.Log("hello?");
                 item1_Name.GetComponent<UnityEngine.UI.Text>().text = "textbook1";
                 item1_Price.GetComponent<UnityEngine.UI.Text>().text = "$500";
-                item1_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems.ToString();
+                item1_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems1.ToString();
                 item1_group.alpha = 1f;
                 item1_group.interactable = true;
                 item1_group.blocksRaycasts = true;
@@ -128,7 +169,7 @@ public class check_out_script : MonoBehaviour
             case 1:
                 item2_Name.GetComponent<UnityEngine.UI.Text>().text = "textbook2";
                 item2_Price.GetComponent<UnityEngine.UI.Text>().text = "$500";
-                item2_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems.ToString();
+                item2_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems2.ToString();
                 item2_group.alpha = 1f;
                 item2_group.interactable = true;
                 item2_group.blocksRaycasts = true;
@@ -138,7 +179,7 @@ public class check_out_script : MonoBehaviour
             case 2:
                 item3_Name.GetComponent<UnityEngine.UI.Text>().text = "textbook3";
                 item3_Price.GetComponent<UnityEngine.UI.Text>().text = "$500";
-                item3_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems.ToString();
+                item3_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems3.ToString();
                 item3_group.alpha = 1f;
                 item3_group.interactable = true;
                 item3_group.blocksRaycasts = true;
@@ -148,7 +189,7 @@ public class check_out_script : MonoBehaviour
             case 3:
                 item4_Name.GetComponent<UnityEngine.UI.Text>().text = "textbook4";
                 item4_Price.GetComponent<UnityEngine.UI.Text>().text = "$500";
-                item4_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems.ToString();
+                item4_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems4.ToString();
                 item4_group.alpha = 1f;
                 item4_group.interactable = true;
                 item4_group.blocksRaycasts = true;
@@ -158,7 +199,7 @@ public class check_out_script : MonoBehaviour
             case 4:
                 item5_Name.GetComponent<UnityEngine.UI.Text>().text = "textbook5";
                 item5_Price.GetComponent<UnityEngine.UI.Text>().text = "$500";
-                item5_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems.ToString();
+                item5_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems5.ToString();
                 item5_group.alpha = 1f;
                 item5_group.interactable = true;
                 item5_group.blocksRaycasts = true;
@@ -168,7 +209,7 @@ public class check_out_script : MonoBehaviour
             case 5:
                 item6_Name.GetComponent<UnityEngine.UI.Text>().text = "textbook6";
                 item6_Price.GetComponent<UnityEngine.UI.Text>().text = "$500";
-                item6_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems.ToString();
+                item6_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems6.ToString();
                 item6_group.alpha = 1f;
                 item6_group.interactable = true;
                 item6_group.blocksRaycasts = true;
@@ -248,27 +289,158 @@ public class check_out_script : MonoBehaviour
 
     }
 
-    public void addAmountItem1()
+    public void addAmount1()
     {
         Debug.Log("add amount");
-        if (numOfItems >= 1)
+        if (numOfItems1 >= 1)
         {
-            numOfItems += 1;
+            numOfItems1 += 1;
             
-            item1_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems.ToString();
+            item1_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems1.ToString();
             totalCost += 500;
             total_cost.GetComponent<UnityEngine.UI.Text>().text = totalCost.ToString();
         }
     }
 
-    public void removeAmount()
+    public void removeAmount1()
     {
         Debug.Log("remove amount");
-        if (numOfItems > 1)
+        if (numOfItems1 > 1)
         {
-            numOfItems -= 1;
+            numOfItems1 -= 1;
             
-            item1_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems.ToString();
+            item1_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems1.ToString();
+            totalCost -= 500;
+            total_cost.GetComponent<UnityEngine.UI.Text>().text = totalCost.ToString();
+        }
+    }
+
+    public void addAmount2()
+    {
+        Debug.Log("add amount");
+        if (numOfItems2 >= 1)
+        {
+            numOfItems2 += 1;
+
+            item2_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems2.ToString();
+            totalCost += 500;
+            total_cost.GetComponent<UnityEngine.UI.Text>().text = totalCost.ToString();
+        }
+    }
+
+    public void removeAmount2()
+    {
+        Debug.Log("remove amount");
+        if (numOfItems2 > 1)
+        {
+            numOfItems2 -= 1;
+
+            item2_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems2.ToString();
+            totalCost -= 500;
+            total_cost.GetComponent<UnityEngine.UI.Text>().text = totalCost.ToString();
+        }
+    }
+
+    
+    public void addAmount3()
+    {
+        Debug.Log("add amount");
+        if (numOfItems3 >= 1)
+        {
+            numOfItems3 += 1;
+
+            item3_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems3.ToString();
+            totalCost += 500;
+            total_cost.GetComponent<UnityEngine.UI.Text>().text = totalCost.ToString();
+        }
+    }
+
+    public void removeAmount3()
+    {
+        Debug.Log("remove amount");
+        if (numOfItems3 > 1)
+        {
+            numOfItems3 -= 1;
+
+            item3_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems3.ToString();
+            totalCost -= 500;
+            total_cost.GetComponent<UnityEngine.UI.Text>().text = totalCost.ToString();
+        }
+    }
+
+    public void addAmount4()
+    {
+        Debug.Log("add amount");
+        if (numOfItems4 >= 1)
+        {
+            numOfItems4 += 1;
+
+            item4_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems4.ToString();
+            totalCost += 500;
+            total_cost.GetComponent<UnityEngine.UI.Text>().text = totalCost.ToString();
+        }
+    }
+
+    public void removeAmount4()
+    {
+        Debug.Log("remove amount");
+        if (numOfItems4 > 1)
+        {
+            numOfItems4 -= 1;
+
+            item4_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems4.ToString();
+            totalCost -= 500;
+            total_cost.GetComponent<UnityEngine.UI.Text>().text = totalCost.ToString();
+        }
+    }
+
+    public void addAmount5()
+    {
+        Debug.Log("add amount");
+        if (numOfItems5 >= 1)
+        {
+            numOfItems5 += 1;
+
+            item5_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems5.ToString();
+            totalCost += 500;
+            total_cost.GetComponent<UnityEngine.UI.Text>().text = totalCost.ToString();
+        }
+    }
+
+    public void removeAmount5()
+    {
+        Debug.Log("remove amount");
+        if (numOfItems5 > 1)
+        {
+            numOfItems5 -= 1;
+
+            item5_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems5.ToString();
+            totalCost -= 500;
+            total_cost.GetComponent<UnityEngine.UI.Text>().text = totalCost.ToString();
+        }
+    }
+
+    public void addAmount6()
+    {
+        Debug.Log("add amount");
+        if (numOfItems6 >= 1)
+        {
+            numOfItems6 += 1;
+
+            item6_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems6.ToString();
+            totalCost += 500;
+            total_cost.GetComponent<UnityEngine.UI.Text>().text = totalCost.ToString();
+        }
+    }
+
+    public void removeAmount6()
+    {
+        Debug.Log("remove amount");
+        if (numOfItems6 > 1)
+        {
+            numOfItems6 -= 1;
+
+            item6_Amount.GetComponent<UnityEngine.UI.Text>().text = numOfItems6.ToString();
             totalCost -= 500;
             total_cost.GetComponent<UnityEngine.UI.Text>().text = totalCost.ToString();
         }
