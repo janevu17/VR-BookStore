@@ -314,6 +314,7 @@ GameObject:
   - component: {fileID: 475232664866759849}
   - component: {fileID: 475232664866759854}
   - component: {fileID: 475232664866759855}
+  - component: {fileID: 798250365}
   m_Layer: 0
   m_Name: ItemInspectionUI
   m_TagString: Untagged
@@ -404,6 +405,24 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &798250365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475232664866759852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fde8b5fc605eed49b19773d7699e849, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputSource: 5
+  itemUI: {fileID: 475232664634935375}
+  objectNameText: {fileID: 475232665219038441}
+  objectPriceText: {fileID: 3123237118623505639}
+  objectInfoUI: {fileID: 475232664393135469}
+  objectInfoText: {fileID: 475232664616617231}
 --- !u!1 &475232665219038447
 GameObject:
   m_ObjectHideFlags: 0
