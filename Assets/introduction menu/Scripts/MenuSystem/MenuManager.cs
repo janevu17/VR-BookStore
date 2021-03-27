@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.XR;
+
 public class MenuManager : MonoBehaviour
 {
     public Panel currentPanel = null;
@@ -14,8 +16,15 @@ public class MenuManager : MonoBehaviour
     public GameObject toggle_button, second_back_button;
     public GameObject third_back_button;
     */
+
+    //Controller Input Detection
+    private InputDevice device;
+    private bool buttonPress;
+
     private void Start()
     {
+        device = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+        buttonPress = false;
         SetupPanels();    
     }
 
@@ -29,11 +38,19 @@ public class MenuManager : MonoBehaviour
 
     private void Update()
     {
+        if (device.TryGetFeatureValue(CommonUsages.menuButton, out buttonPress) && buttonPress)
+        {
+            PauseUnpause();
+        }
+
+        /*
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PauseUnpause();
 
         }
+        */
+
         /*
         if (Input.GetMouseButton(0))
         {
@@ -44,17 +61,17 @@ public class MenuManager : MonoBehaviour
 
    public void PauseUnpause()
    {
-        if (panelHistory.Count == 0)
+        //if (panelHistory.Count == 0)
         {
             SetCurrentWithHistory(mainPanel);
             currentPanel.Show();
-            
+
         }
-        else
-        {
-            currentPanel.Hide();
-            panelHistory.RemoveAt(0);
-        }
+        //else
+        //{
+        //    currentPanel.Hide();
+        //    panelHistory.RemoveAt(0);
+        //}
         
 
    }
