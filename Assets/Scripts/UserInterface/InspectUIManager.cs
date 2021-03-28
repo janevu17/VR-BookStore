@@ -98,5 +98,7 @@ public class InspectUIManager : MonoBehaviour
     public void DroppedObject()
     {
         gripPress = false; //User dropped object
+        objectNameUI.SetActive(false);
+        objectPriceUI.SetActive(false);
     }
 }
