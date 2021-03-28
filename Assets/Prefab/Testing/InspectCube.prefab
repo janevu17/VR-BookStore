@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8752639730490173492}
   - component: {fileID: 8752639730490173493}
   - component: {fileID: 4874108894215038050}
+  - component: {fileID: 8405801972714635140}
   m_Layer: 8
   m_Name: InspectCube
   m_TagString: TestObj
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2618227838774921001, guid: d57575c757647d34abdec51f53193242, type: 3}
+  - {fileID: 4451827222825519050, guid: d57575c757647d34abdec51f53193242, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -135,12 +136,12 @@ MonoBehaviour:
   m_OnHoverEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 798250365, guid: f28fc873e8f3f5d489b527c6363e3d1a, type: 3}
+      - m_Target: {fileID: 8405801972714635140}
         m_MethodName: ShowName
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 8752639730490173495}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -149,7 +150,7 @@ MonoBehaviour:
   m_OnHoverExited:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 798250365, guid: f28fc873e8f3f5d489b527c6363e3d1a, type: 3}
+      - m_Target: {fileID: 8405801972714635140}
         m_MethodName: HideName
         m_Mode: 1
         m_Arguments:
@@ -166,12 +167,12 @@ MonoBehaviour:
   m_OnSelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 798250365, guid: f28fc873e8f3f5d489b527c6363e3d1a, type: 3}
+      - m_Target: {fileID: 8405801972714635140}
         m_MethodName: GrabbedObject
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 8752639730490173495}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -180,7 +181,7 @@ MonoBehaviour:
   m_OnSelectExited:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 798250365, guid: f28fc873e8f3f5d489b527c6363e3d1a, type: 3}
+      - m_Target: {fileID: 8405801972714635140}
         m_MethodName: DroppedObject
         m_Mode: 1
         m_Arguments:
@@ -245,3 +246,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4471daec0c1f547910eb5cb1245d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8405801972714635140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8752639730490173495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f564538823a94424c805a4d282a7c8ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectName: Hello
+  objectPrice: 0
+  objectInfo: plz work!
+  inpsectUI: {fileID: 475232664866759852, guid: f28fc873e8f3f5d489b527c6363e3d1a,
+    type: 3}
