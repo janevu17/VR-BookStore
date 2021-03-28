@@ -38,9 +38,10 @@ public class MenuManager : MonoBehaviour
 
     private void Update()
     {
+        //Click on MenuButton on LeftHand Controller to open the MenuUI
         if (device.TryGetFeatureValue(CommonUsages.menuButton, out buttonPress) && buttonPress)
         {
-            PauseUnpause();
+            Pause();
         }
 
         /*
@@ -59,24 +60,20 @@ public class MenuManager : MonoBehaviour
         */
     }
 
-   public void PauseUnpause()
+   public void Pause()
    {
-        //if (panelHistory.Count == 0)
-        {
-            SetCurrentWithHistory(mainPanel);
-            currentPanel.Show();
-
-        }
-        //else
-        //{
-        //    currentPanel.Hide();
-        //    panelHistory.RemoveAt(0);
-        //}
-        
-
+        SetCurrentWithHistory(mainPanel);
+        currentPanel.Show();
    }
 
-   public void GoToPrevious()
+   //Click Exit button to exit the MenuUI
+   public void Exit()
+   {
+        currentPanel.Hide();
+        panelHistory.RemoveAt(0);
+   }
+
+    public void GoToPrevious()
     {
         if (panelHistory.Count == 0)
         {
