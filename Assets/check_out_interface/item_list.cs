@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class item_list : MonoBehaviour
 {
@@ -14,15 +15,15 @@ public class item_list : MonoBehaviour
 
     //public GameObject item_script_obj;
     
-    private List<ItemObject> shopping_cart_list;
-    private List<GameObject> 
+    private List<GameObject> shopping_cart_list;
+    
     
 
     // Start is called before the first frame update
     void Start()
     {
        
-        shopping_cart_list = new List<ItemObject>();
+        shopping_cart_list = new List<GameObject>();
         items_script = item_row.GetComponent<items_script>();
 
 
@@ -41,18 +42,27 @@ public class item_list : MonoBehaviour
         bool itemFound = false;
         for(int i = 0; i < shopping_cart_list.Count; i++)
         {
+            //look for item in list
             if(shopping_cart_list[i] != null)
             {
-                //**this is the part where we need to check for unique item ID instead of name
-                if (shopping_cart_list[i].GetName() == item.name)
+                //is shopping_cart_list[i].GetComponent<ObjectController>().GetItemObject() == null?
+                if(shopping_cart_list[i].GetComponent<ObjectController>().GetItemObject() == null)
                 {
-                    shopping_cart_list[i].IncrementAmount(1);
-                    itemFound = true;
+                    Debug.Log("it is equal to null");
+                }
+                //**this is the part where we need to check for unique item ID instead of name
+                if (shopping_cart_list[i].GetComponent<ObjectController>().GetItemObject().GetName() == item.GetComponent<ObjectController>().GetItemObject().GetName())
+                {
+                    //if item found in list already, increment amount
+                    shopping_cart_list[i].GetComponent<ObjectController>().GetItemObject().IncrementAmount(1);
+                    
                     //totalCost = totalCost + shopping_cart_list[i].GetPrice();
-                    updateTotalCost(shopping_cart_list[i].GetPrice());
+                    updateTotalCost(shopping_cart_list[i].GetComponent<ObjectController>().GetItemObject().GetPrice());
+                    //items_script.total_cost.text = totalCost.ToString();
                     //update amount 
-                    items_script.itemAmount.text = shopping_cart_list[i].GetAmount().ToString();
+                    items_script.itemAmount.text = shopping_cart_list[i].GetComponent<ObjectController>().GetItemObject().GetAmount().ToString();
 
+                    itemFound = true;
                     Debug.Log("dup item: " + item.name);
                 }
             }
@@ -60,73 +70,104 @@ public class item_list : MonoBehaviour
             
             
         }
+        
         if(itemFound == false)
         {
             //ItemObject temp = new ItemObject(item.name,"aaa1", "first item",  500.00f, 1);
             //get item object
-            ItemObject temp = item.GetComponent<ObjectController>().GetItemObject();
-            shopping_cart_list.Add(temp);
+
+            shopping_cart_list.Add(item);
             numberOfItems += 1;
 
-            //set name
-            items_script.itemName.text = temp.GetName();
-            //set price
-            items_script.itemPrice.text = temp.GetPrice().ToString();
-            //set amount 
-            items_script.itemAmount.text = temp.GetAmount().ToString();
-            Debug.Log("new item: " + temp.GetName());
+            //create new item row if numOfInumberOfItemstems > 1
+            if (numberOfItems > 1)
+            {
+                Debug.Log("cart items: " + shopping_cart_list.Count);
+                Instantiate(item_row, transform);
+            }
 
-            //create new item row
-            Instantiate(item_row, transform);
 
-            //update total cost****
-            updateTotalCost(temp.GetPrice());
-        }
+            for (int i = 0; i < shopping_cart_list.Count; i++)
+            {
+                Debug.Log("item in cart: " + shopping_cart_list[i].GetComponent<ObjectController>().GetItemObject().GetName());
+            }
 
-        
-        
-    }
-
-    public void removeItem()
-    {
-        //iterate through list to find item
-        for(int i = 0; i <shopping_cart_list.Count; i++)
-        {
-            //remove all items
-            if(shopping_cart_list[i].GetName() == item.name)
+            if (item == null)
             {
                 
-                 int amountToDelete = shopping_cart_list[i].GetAmount();
-                 updateTotalCost(-amountToDelete);
-                
-                numberOfItems -= 1;
-                shopping_cart_list.RemoveAt(i);
-
-                Destroy(item_row);
             }
+            
+            if (item.GetComponent<ObjectController>().GetItemObject() == null)
+            {
+                Debug.Log("null item");
+                
+            }
+            
+
+            //set name
+            items_script.itemName.text = item.GetComponent<ObjectController>().GetItemObject().GetName().ToString();
+            //set price
+            items_script.itemPrice.text = item.GetComponent<ObjectController>().GetItemObject().GetPrice().ToString();
+            //set amount 
+            items_script.itemAmount.text = item.GetComponent<ObjectController>().GetItemObject().GetAmount().ToString();
+            Debug.Log("new item: " + item.GetComponent<ObjectController>().GetItemObject().GetName());
+
+            
+            
+            //update total cost****
+            
+            updateTotalCost(item.GetComponent<ObjectController>().GetItemObject().GetPrice());
+            //items_script.total_cost.text = totalCost.ToString();
+            //Debug.Log("after updating subtotal: " + items_script.total_cost.text);
         }
 
+       
         
-
     }
 
-    //add amount function
-    public void addAmount()
+    //passed in item_row gameobject
+    public void removeItem(GameObject passed_item_row)
     {
-        updateTotalCost()
-    }
-    
+        Debug.Log("hello im in removeItem");
+        float tempCost = 0;
+        int tempAmount = 0;
+        GameObject tempItem = null;
+        //iterate through list to find item
+        for (int i = 0; i <shopping_cart_list.Count; i++)
+        {
+            //get id and find in list and find in list****
+            if (shopping_cart_list[i].GetComponent<ObjectController>().GetItemObject().GetName() == passed_item_row.GetComponent<ObjectController>().GetItemObject().GetName())
+            {
+                //store temp cost and amount 
+                tempCost = shopping_cart_list[i].GetComponent<ObjectController>().GetItemObject().GetPrice();
+                tempAmount = shopping_cart_list[i].GetComponent<ObjectController>().GetItemObject().GetAmount();
+                tempItem = shopping_cart_list[i];
 
-    //remove amount function
-    public void removeAmount()
-    {
+
+
+                //delete found item from list/shopping cart
+                shopping_cart_list.RemoveAt(i);
+            }
+
+            //update total cost
+            updateTotalCost(tempCost*tempCost);
+            
+
+        }
+        //delete item row since item is deleted
+        Destroy(passed_item_row);
+
+
 
     }
+
+   
 
     //update total cost
     private void updateTotalCost(float price)
     {
         totalCost += price;
+        
     }
 
 

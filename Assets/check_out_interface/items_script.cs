@@ -14,17 +14,12 @@ public class items_script : MonoBehaviour
     //item amount
     public Text itemAmount;
 
-    //add button
-    public Button addAmountButton;
-
-    //remove button
-    public Button removeAmountButton;
 
     //remove item from cart
     public Button removeItem;
 
     //total cost
-    public Text total_amount;
+    public Text total_cost;
 
     // Start is called before the first frame update
     void Start()
