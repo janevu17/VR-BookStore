@@ -6,6 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class UserMovement : MonoBehaviour
 {
+    private Quaternion headDirection;
     public float speed = 1.0f;
     public float additionalHeight = 0.2f;
     public XRNode inputSource;
@@ -32,10 +33,16 @@ public class UserMovement : MonoBehaviour
     private void FixedUpdate()
     {
         //Syncing x and z-axis based on the direction that the Player is facing
-        Quaternion headDirection = Quaternion.Euler(0, rig.cameraGameObject.transform.eulerAngles.y, 0); 
+        headDirection = Quaternion.Euler(0, rig.cameraGameObject.transform.eulerAngles.y, 0); 
 
         //Moving Player in x and z-axis of 3D world based on left joystick input
         Vector3 direction = headDirection * (new Vector3(inputAxis.x, 0, inputAxis.y)); 
         player.Move(direction * Time.fixedDeltaTime * speed);
     }
+
+    public Quaternion getHeadDirection()
+    {
+        return headDirection;
+    }
+    
 }
