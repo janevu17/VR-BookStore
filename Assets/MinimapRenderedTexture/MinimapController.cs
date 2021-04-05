@@ -21,9 +21,10 @@ public class MinimapController : MonoBehaviour
     {
         minimapObject = GetComponent<Canvas>();         // Get the Canvas component of the minimap canvas
         hit = GetComponent<GraphicRaycaster>();         // Get Graphic raycaster component of the minimap canvas
-        eventSystem = GetComponent<EventSystem>();      
+        eventSystem = GetComponent<EventSystem>();
+        minimapObject.enabled = false;
     }
-
+    /*
     // Convert from pixel (mouse position on screen) to Scene coordinates
     // Take in new position of where you want to teleport to w.r.t the game screen (in pixels) Vector3 (x, y, z)
     // Return the new position of where you want to teleport to w.r.t to scene (in scene coordinates) Vector2 of just x and z
@@ -59,7 +60,7 @@ public class MinimapController : MonoBehaviour
 
         // Pass in any object that collides in a adjustable radius
         Collider[] hitColliders = Physics.OverlapSphere(center, checkRadius, layerMask);
-        
+
         // If any object in there, don't teleport
         if (hitColliders.Length != 0)
         {
@@ -68,7 +69,7 @@ public class MinimapController : MonoBehaviour
         }
         return isOccupied;
     }
-    
+    */
     void Update()
     {
         // Press m to open and close minimap
@@ -88,10 +89,22 @@ public class MinimapController : MonoBehaviour
                 // Raycast from mouse position to minimap canvas
                 List<RaycastResult> result = new List<RaycastResult>();
                 hit.Raycast(eventData, result);
-                
+
                 // Only do these things if mouse click was registered on minimap canvas
                 foreach (RaycastResult element in result)
                 {
+                    if (element.gameObject.tag == "button")
+                    {
+                        Debug.Log("current pos:" + firstPerson.transform.position);
+                        Vector3 temp;
+                        temp.x = element.gameObject.GetComponent<buttonController>().correspondingCoordinates.x;
+                        temp.z = element.gameObject.GetComponent<buttonController>().correspondingCoordinates.y;
+                        temp.y = firstPerson.transform.position.y;
+                        Debug.Log("new pos: " + temp);
+                        firstPerson.transform.position = temp;
+                        Debug.Log("after move: " + firstPerson.transform.position);
+                    }
+                    /*
                     Vector3 temp;
                     // Do conversion
                     temp.x = ConvertToCoords(eventData.position).x;
@@ -101,6 +114,7 @@ public class MinimapController : MonoBehaviour
                     // Check surrounding
                     if (CheckSurrounding(temp) == false)
                         firstPerson.transform.position = temp;
+                    */
                 }
             }
         }
