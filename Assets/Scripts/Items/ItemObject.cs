@@ -79,6 +79,6 @@ public class ItemObject
     }
     public void DecrementAmount(int decrement)
     {
-        amount += decrement;
+        amount -= decrement;
     }
 }
