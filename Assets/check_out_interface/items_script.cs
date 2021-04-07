@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class items_script : MonoBehaviour
 {
+
+    private string id;
     //item name
     public Text itemName;
 
@@ -14,9 +16,6 @@ public class items_script : MonoBehaviour
     //item amount
     public Text itemAmount;
 
-
-    //remove item from cart
-    public Button removeItem;
 
     //total cost
     public Text total_cost;
@@ -33,6 +32,16 @@ public class items_script : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public string GetID()
+    {
+        return id;
+    }
+
+    public void SetID(string passed_id)
+    {
+        id = passed_id;
     }
 
 }
