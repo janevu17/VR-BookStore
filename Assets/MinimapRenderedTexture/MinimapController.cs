@@ -4,25 +4,34 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEditor;
+using UnityEngine.XR;
 
 public class MinimapController : MonoBehaviour
 {
-    public Canvas minimapObject;            // Reference to the minimap cnavas in Hierarchy
-    GraphicRaycaster hit;                   // Graphic raycaster from mouse to minimap canvas
-    EventSystem eventSystem;                // Event System
-    PointerEventData eventData;             // Event Data for mouse raycast
-    public GameObject firstPerson;          // Reference to FirstPersonMinimap object in Hierarchy
+    private Canvas minimapObject;            // Reference to the minimap cnavas in Hierarchy
+
+    //GraphicRaycaster hit;                   // Graphic raycaster from mouse to minimap canvas
+    //EventSystem eventSystem;                // Event System
+    //PointerEventData eventData;             // Event Data for mouse raycast
+    public GameObject XRRig;          // Reference to FirstPersonMinimap object in Hierarchy
 
     public float checkRadius = 1f;          // public changeable radius of checking for collision when teleporting
 
+    private CharacterController characterController;
+
+    private InputDevice device; //Oculus input controls
 
     // Update is called once per frame
     private void Start()
     {
-        minimapObject = GetComponent<Canvas>();         // Get the Canvas component of the minimap canvas
-        hit = GetComponent<GraphicRaycaster>();         // Get Graphic raycaster component of the minimap canvas
-        eventSystem = GetComponent<EventSystem>();
+        minimapObject = transform.GetComponent<Canvas>();         // Get the Canvas component of the minimap canvas
+
+        //hit = GetComponent<GraphicRaycaster>();         // Get Graphic raycaster component of the minimap canvas
+        //eventSystem = GetComponent<EventSystem>();
         minimapObject.enabled = false;
+        characterController = XRRig.GetComponent<CharacterController>();
+
+        device = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
     }
     /*
     // Convert from pixel (mouse position on screen) to Scene coordinates
@@ -70,53 +79,74 @@ public class MinimapController : MonoBehaviour
         return isOccupied;
     }
     */
+
+    public void Teleport(buttonController button)
+    {
+        Vector3 temp;
+        temp.x = button.correspondingCoordinates.x;
+        temp.z = button.correspondingCoordinates.y;
+        temp.y = XRRig.transform.position.y;
+
+        characterController.enabled = false;
+        XRRig.transform.position = temp;
+        characterController.enabled = true;
+    }
+
+    //Click on Exit button on minimap to close it
+    public void CloseMap()
+    {
+        minimapObject.enabled = false;
+    }
+
     void Update()
     {
         // Press m to open and close minimap
-        if (Input.GetKeyDown("m"))
+        //if (Input.GetKeyDown("m"))
+        //Press X to open minimap
+        bool buttonPress;
+        if (device.TryGetFeatureValue(CommonUsages.primaryButton, out buttonPress) && buttonPress)
         {
-            minimapObject.enabled = !minimapObject.enabled;
+            minimapObject.enabled = true;
         }
+        //if (minimapObject.enabled)
+        //{
+        //    // Left click to get position of mouse
+        //    if (Input.GetMouseButtonDown(0))
+        //    {
+        //        eventData = new PointerEventData(eventSystem);
+        //        eventData.position = Input.mousePosition;
 
-        if (minimapObject.enabled)
-        {
-            // Left click to get position of mouse
-            if (Input.GetMouseButtonDown(0))
-            {
-                eventData = new PointerEventData(eventSystem);
-                eventData.position = Input.mousePosition;
+        //        // Raycast from mouse position to minimap canvas
+        //        List<RaycastResult> result = new List<RaycastResult>();
+        //        hit.Raycast(eventData, result);
 
-                // Raycast from mouse position to minimap canvas
-                List<RaycastResult> result = new List<RaycastResult>();
-                hit.Raycast(eventData, result);
+        //        // Only do these things if mouse click was registered on minimap canvas
+        //        foreach (RaycastResult element in result)
+        //        {
+        //            if (element.gameObject.tag == "button")
+        //            {
+        //                Debug.Log("current pos:" + firstPerson.transform.position);
+        //                Vector3 temp;
+        //                temp.x = element.gameObject.GetComponent<buttonController>().correspondingCoordinates.x;
+        //                temp.z = element.gameObject.GetComponent<buttonController>().correspondingCoordinates.y;
+        //                temp.y = firstPerson.transform.position.y;
+        //                Debug.Log("new pos: " + temp);
+        //                firstPerson.transform.position = temp;
+        //                Debug.Log("after move: " + firstPerson.transform.position);
+        //            }
+        //            /*
+        //            Vector3 temp;
+        //            // Do conversion
+        //            temp.x = ConvertToCoords(eventData.position).x;
+        //            temp.z = ConvertToCoords(eventData.position).y;
+        //            temp.y = firstPerson.transform.position.y;
 
-                // Only do these things if mouse click was registered on minimap canvas
-                foreach (RaycastResult element in result)
-                {
-                    if (element.gameObject.tag == "button")
-                    {
-                        Debug.Log("current pos:" + firstPerson.transform.position);
-                        Vector3 temp;
-                        temp.x = element.gameObject.GetComponent<buttonController>().correspondingCoordinates.x;
-                        temp.z = element.gameObject.GetComponent<buttonController>().correspondingCoordinates.y;
-                        temp.y = firstPerson.transform.position.y;
-                        Debug.Log("new pos: " + temp);
-                        firstPerson.transform.position = temp;
-                        Debug.Log("after move: " + firstPerson.transform.position);
-                    }
-                    /*
-                    Vector3 temp;
-                    // Do conversion
-                    temp.x = ConvertToCoords(eventData.position).x;
-                    temp.z = ConvertToCoords(eventData.position).y;
-                    temp.y = firstPerson.transform.position.y;
-
-                    // Check surrounding
-                    if (CheckSurrounding(temp) == false)
-                        firstPerson.transform.position = temp;
-                    */
-                }
-            }
-        }
+        //            // Check surrounding
+        //            if (CheckSurrounding(temp) == false)
+        //                firstPerson.transform.position = temp;
+        //            */
+        //        }
+        //    }
+        //}
     }
 }
