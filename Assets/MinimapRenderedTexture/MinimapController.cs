@@ -21,6 +21,8 @@ public class MinimapController : MonoBehaviour
 
     private InputDevice device; //Oculus input controls
 
+    private GameObject teleportButtons;
+
     // Update is called once per frame
     private void Start()
     {
@@ -32,6 +34,15 @@ public class MinimapController : MonoBehaviour
         characterController = XRRig.GetComponent<CharacterController>();
 
         device = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+
+        foreach (Transform child in transform)
+        {
+            if (child.name == "TeleportButtons")
+            {
+                teleportButtons = child.gameObject;
+            }
+        }
+        teleportButtons.SetActive(false); //disable TeleportButtons
     }
     /*
     // Convert from pixel (mouse position on screen) to Scene coordinates
@@ -96,6 +107,7 @@ public class MinimapController : MonoBehaviour
     public void CloseMap()
     {
         minimapObject.enabled = false;
+        teleportButtons.SetActive(false);
     }
 
     void Update()
@@ -104,9 +116,10 @@ public class MinimapController : MonoBehaviour
         //if (Input.GetKeyDown("m"))
         //Press X to open minimap
         bool buttonPress;
-        if (device.TryGetFeatureValue(CommonUsages.primaryButton, out buttonPress) && buttonPress)
+        if ((device.TryGetFeatureValue(CommonUsages.primaryButton, out buttonPress) && buttonPress) || Input.GetKeyDown("m"))
         {
             minimapObject.enabled = true;
+            teleportButtons.SetActive(true);
         }
         //if (minimapObject.enabled)
         //{

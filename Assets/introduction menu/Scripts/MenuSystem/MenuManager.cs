@@ -17,12 +17,16 @@ public class MenuManager : MonoBehaviour
     public GameObject third_back_button;
     */
 
+    private Canvas menuCanvas;
+
     //Controller Input Detection
     private InputDevice device;
     private bool buttonPress;
 
     private void Start()
     {
+        menuCanvas = GetComponent<Canvas>();
+        menuCanvas.enabled = false;
         device = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
         buttonPress = false;
         SetupPanels();    
@@ -39,8 +43,9 @@ public class MenuManager : MonoBehaviour
     private void Update()
     {
         //Click on MenuButton on LeftHand Controller to open the MenuUI
-        if (device.TryGetFeatureValue(CommonUsages.menuButton, out buttonPress) && buttonPress)
+        if ((device.TryGetFeatureValue(CommonUsages.menuButton, out buttonPress) && buttonPress) || Input.GetKeyDown("x"))
         {
+            menuCanvas.enabled = true;
             Pause();
         }
 
@@ -71,7 +76,8 @@ public class MenuManager : MonoBehaviour
    {
         currentPanel.Hide();
         panelHistory.RemoveAt(0);
-   }
+        menuCanvas.enabled = false;
+    }
 
     public void GoToPrevious()
     {

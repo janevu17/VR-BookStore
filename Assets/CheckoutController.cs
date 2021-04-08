@@ -31,7 +31,7 @@ public class CheckoutController : MonoBehaviour
     void Update()
     {
         //If B button on Oculus is pressed, then open CheckoutUI
-        if (device.TryGetFeatureValue(CommonUsages.menuButton, out buttonPress) && buttonPress)
+        if ((device.TryGetFeatureValue(CommonUsages.secondaryButton, out buttonPress) && buttonPress) || Input.GetKeyDown("c"))
         {
             checkoutCanvas.enabled = true;
         }
