@@ -7,7 +7,7 @@ using System.Linq;
 public class ManageItemsInCart : MonoBehaviour
 {
     public GameObject cart;
-    public CheckoutTest checkoutScript;
+    public item_list checkoutScript;
 
     private Collider[] inCart; //items currently in cart
     private Collider[] checkCart; //recent check of items in cart
@@ -31,7 +31,7 @@ public class ManageItemsInCart : MonoBehaviour
         {
             if (items.tag == "TestObj")
             {
-                checkoutScript.AddItem(items.gameObject);
+                checkoutScript.addItem(items.gameObject);
             }
         }
 
@@ -39,7 +39,7 @@ public class ManageItemsInCart : MonoBehaviour
         {
             if (items.tag == "TestObj")
             {
-                checkoutScript.DeleteItem(items.gameObject);
+                checkoutScript.removeItem(items.gameObject);
             }
         }
 
