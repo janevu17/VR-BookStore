@@ -6,7 +6,8 @@ using UnityEngine.XR;
 public class CheckoutController : MonoBehaviour
 {
     private Canvas checkoutCanvas;
-
+    public Canvas mainMenuUI;
+    public Canvas miniMapUI;
     //Controller Input Detection
     private InputDevice device;
     private bool buttonPress;
@@ -33,7 +34,12 @@ public class CheckoutController : MonoBehaviour
         //If B button on Oculus is pressed, then open CheckoutUI
         if ((device.TryGetFeatureValue(CommonUsages.secondaryButton, out buttonPress) && buttonPress) || Input.GetKeyDown("c"))
         {
-            checkoutCanvas.enabled = true;
+            if (!mainMenuUI.isActiveAndEnabled)
+            {
+                checkoutCanvas.enabled = true;
+                miniMapUI.enabled = false;
+            }
+            
         }
     }
 }

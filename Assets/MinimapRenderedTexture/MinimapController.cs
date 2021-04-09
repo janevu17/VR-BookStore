@@ -9,6 +9,8 @@ using UnityEngine.XR;
 public class MinimapController : MonoBehaviour
 {
     private Canvas minimapObject;            // Reference to the minimap cnavas in Hierarchy
+    public Canvas mainMenuUI;
+    public Canvas checkoutUI;
 
     //GraphicRaycaster hit;                   // Graphic raycaster from mouse to minimap canvas
     //EventSystem eventSystem;                // Event System
@@ -88,7 +90,7 @@ public class MinimapController : MonoBehaviour
             isOccupied = true;
         }
         return isOccupied;
-    }
+    }m
     */
 
     public void Teleport(buttonController button)
@@ -118,8 +120,13 @@ public class MinimapController : MonoBehaviour
         bool buttonPress;
         if ((device.TryGetFeatureValue(CommonUsages.primaryButton, out buttonPress) && buttonPress) || Input.GetKeyDown("m"))
         {
-            minimapObject.enabled = true;
-            teleportButtons.SetActive(true);
+            if (!mainMenuUI.isActiveAndEnabled)
+            {
+                minimapObject.enabled = true;
+                checkoutUI.enabled = false;
+                teleportButtons.SetActive(true);
+            }
+            
         }
         //if (minimapObject.enabled)
         //{

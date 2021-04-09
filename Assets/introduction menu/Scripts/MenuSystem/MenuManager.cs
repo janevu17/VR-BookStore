@@ -18,6 +18,8 @@ public class MenuManager : MonoBehaviour
     */
 
     private Canvas menuCanvas;
+    public Canvas miniMapUI;
+    public Canvas checkoutUI;
 
     //Controller Input Detection
     private InputDevice device;
@@ -43,12 +45,15 @@ public class MenuManager : MonoBehaviour
     private void Update()
     {
         //Click on MenuButton on LeftHand Controller to open the MenuUI
+        
         if ((device.TryGetFeatureValue(CommonUsages.menuButton, out buttonPress) && buttonPress) || Input.GetKeyDown("x"))
         {
             menuCanvas.enabled = true;
+            miniMapUI.enabled = false;
+            checkoutUI.enabled = false;
             Pause();
         }
-
+        
         /*
         if (Input.GetKeyDown(KeyCode.Escape))
         {
