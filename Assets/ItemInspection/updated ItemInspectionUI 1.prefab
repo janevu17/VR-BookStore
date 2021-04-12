@@ -189,7 +189,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.00033940983}
   m_SizeDelta: {x: 0, y: 95.335754}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2251682140670074679
@@ -695,7 +695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputSource: 0
-  objectNameUI: {fileID: 0}
+  inspectUIBG: {fileID: 2671500531523433893}
   objectNameText: {fileID: 2671500530933039363}
   objectPriceUI: {fileID: 0}
   objectPriceText: {fileID: 723497155092149432}
@@ -1134,8 +1134,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6221032834260293375}
   m_HandleRect: {fileID: 5793586161691131230}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 1
+  m_Value: -2.4594595
+  m_Size: 0.99995905
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
