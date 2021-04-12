@@ -17,8 +17,8 @@ public class items_script : MonoBehaviour
     public Text itemAmount;
 
 
-    //total cost
-    public Text total_cost;
+    //item desc
+    public Text item_desc;
 
     // Start is called before the first frame update
     void Start()
