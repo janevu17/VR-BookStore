@@ -17,7 +17,7 @@ public class DatabaseTest : MonoBehaviour
         names = new List<string>();
         names.Add("Hello");
         names.Add("World!");
-        Test();   
+        Test();
     }
 
     //Test that Database can set up ItemPrefab
