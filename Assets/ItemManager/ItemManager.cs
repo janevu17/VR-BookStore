@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 
 [System.Serializable]
@@ -128,6 +129,12 @@ public class ItemManager : MonoBehaviour
                             default:
                                 break;
                         }
+
+                        //go.GetComponent<XRGrabInteractable>().enabled = false;
+                        go.GetComponent<XRGrabInteractable>().interactionLayerMask = 0;
+
+                        var rend = go.GetComponent<Renderer>();
+                        rend.material.SetColor("_Color", Color.gray);
                     }
 
                 }
