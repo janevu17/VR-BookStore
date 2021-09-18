@@ -11,6 +11,8 @@ public class ObjectController : MonoBehaviour
 {
     private ItemObject item;
 
+
+
     //Creates ItemObject
     public void CreateItemObject(string name, string ID, string info, float price, int amount)
     {
@@ -21,4 +23,16 @@ public class ObjectController : MonoBehaviour
     {
         return item;
     }
+
+   public int getAmount()
+   {
+        return item.GetAmount();
+   }
+
+    public void updateAmount(int amount)
+    {
+        item.SetAmount(amount);
+    }  
+
+
 }

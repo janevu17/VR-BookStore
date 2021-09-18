@@ -101,4 +101,9 @@ public class InspectUIManager : MonoBehaviour
         objectNameUI.SetActive(false);
         objectPriceUI.SetActive(false);
     }
+
+    public bool GrabbedInteraction()
+    {
+        return gripPress;
+    }
 }

@@ -28,9 +28,10 @@ public class DatabaseTest : MonoBehaviour
         copyPrefab.GetComponent<ObjectController>().CreateItemObject(names[0], "abc123", "this is just a test.", 500.00f, 1);
         copyPrefab.GetComponent<InspectController>().SetInspectUI(inspect);
 
+        
         //Instantiating second item into Scene
         copyPrefab = Instantiate(itemPrefab, transform);
         copyPrefab.GetComponent<ObjectController>().CreateItemObject(names[1], "def456", "Has a sprinkle of innovation", 1.00f, 1);
-        copyPrefab.GetComponent<InspectController>().SetInspectUI(inspect);
+        copyPrefab.GetComponent<StaticSpawnController>().SetInspectUI(inspect);
     }
 }
