@@ -13,4 +13,5 @@ public class ObjectDetails : MonoBehaviour
     public string Info;
     public float Price;
     public int Amount;
+    public string Date;
 }

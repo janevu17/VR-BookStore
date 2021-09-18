@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.UI;
 
 
 [System.Serializable]
@@ -30,11 +31,15 @@ public class Item
     public float Price;
     public int Amount;
     public int ToSpawn;
+    public string Date;
 }
+
+
+
 
 public class ItemManager : MonoBehaviour
 {
-
+    public GameObject GO;
     private bool CheckSurrounding(Vector3 center)
     {
         // Do check for collision with Grab (Grab layer is number 8)
@@ -64,8 +69,14 @@ public class ItemManager : MonoBehaviour
     bool notSpawned;
     public Inventory inventory;
     public GameObject copyprefab;
+
+    private TextMesh text;
     //private GameObject inspect;
-    
+
+
+
+
+
     void Start()
     {
         notInstantiated = true;
@@ -98,6 +109,7 @@ public class ItemManager : MonoBehaviour
                         go.GetComponent<ObjectDetails>().Info = item.Info;
                         go.GetComponent<ObjectDetails>().Price = item.Price;
                         go.GetComponent<ObjectDetails>().Amount = item.Amount;
+                        go.GetComponent<ObjectDetails>().Date = item.Date;
                         go.name = go.GetComponent<ObjectDetails>().Name;
                         //go.tag = "Item";
                         // set gravity = false;
@@ -135,6 +147,16 @@ public class ItemManager : MonoBehaviour
 
                         var rend = go.GetComponent<Renderer>();
                         rend.material.SetColor("_Color", Color.gray);
+
+
+                        // Adding OUT OF STOCK MESH
+                        Vector3 loc = go.transform.position;
+                        loc.y += .5f;
+                        Vector3 rote = go.transform.rotation.eulerAngles;
+                        spawnOOS(loc, rote);
+                        loc.y -= .5f;
+                        spawnBackIn(loc, rote, item.Date);
+
                     }
 
                 }
@@ -237,6 +259,35 @@ public class ItemManager : MonoBehaviour
         }
 
         
+
+
+    }
+    
+
+    private void spawnOOS(Vector3 spawnPosition, Vector3 rote)
+    {
+        GameObject oosLogo = Instantiate(GO, spawnPosition, Quaternion.identity);
+        oosLogo.transform.Rotate(rote);
+    }
+
+    private void spawnBackIn(Vector3 spawnPosition, Vector3 rote, string dateVal)
+    {
+
+        Font arial;
+        arial = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
+
+        GameObject oosBack = new GameObject();
+        oosBack.AddComponent<TextMesh>();
+        text = oosBack.GetComponent<TextMesh>();
+        text.text = dateVal;
+        text.font = arial;
+        text.fontSize = 14;
+        text.color = Color.red;
+        Vector3 changeVec = new Vector3(-0.07f, 0.07f, oosBack.transform.localScale.z);
+        oosBack.transform.localScale -= new Vector3(1.0f, 1.0f, 1.0f);
+        oosBack.transform.localScale += changeVec;
+        oosBack.transform.position = spawnPosition;
+        oosBack.transform.Rotate(rote);
 
 
     }
