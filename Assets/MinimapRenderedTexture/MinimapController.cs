@@ -10,6 +10,7 @@ public class MinimapController : MonoBehaviour
 {
     private Canvas minimapObject;            // Reference to the minimap cnavas in Hierarchy
 
+
     //GraphicRaycaster hit;                   // Graphic raycaster from mouse to minimap canvas
     //EventSystem eventSystem;                // Event System
     //PointerEventData eventData;             // Event Data for mouse raycast
@@ -18,8 +19,6 @@ public class MinimapController : MonoBehaviour
     public float checkRadius = 1f;          // public changeable radius of checking for collision when teleporting
 
     private CharacterController characterController;
-
-    private InputDevice device; //Oculus input controls
 
     private GameObject teleportButtons;
 
@@ -32,8 +31,6 @@ public class MinimapController : MonoBehaviour
         //eventSystem = GetComponent<EventSystem>();
         minimapObject.enabled = false;
         characterController = XRRig.GetComponent<CharacterController>();
-
-        device = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
 
         foreach (Transform child in transform)
         {
@@ -110,56 +107,12 @@ public class MinimapController : MonoBehaviour
         teleportButtons.SetActive(false);
     }
 
-    void Update()
+    public void updateButton()
     {
-        // Press m to open and close minimap
-        //if (Input.GetKeyDown("m"))
-        //Press X to open minimap
-        bool buttonPress;
-        if ((device.TryGetFeatureValue(CommonUsages.primaryButton, out buttonPress) && buttonPress) || Input.GetKeyDown("m"))
-        {
-            minimapObject.enabled = true;
-            teleportButtons.SetActive(true);
-        }
-        //if (minimapObject.enabled)
-        //{
-        //    // Left click to get position of mouse
-        //    if (Input.GetMouseButtonDown(0))
-        //    {
-        //        eventData = new PointerEventData(eventSystem);
-        //        eventData.position = Input.mousePosition;
+        teleportButtons.SetActive(true);
 
-        //        // Raycast from mouse position to minimap canvas
-        //        List<RaycastResult> result = new List<RaycastResult>();
-        //        hit.Raycast(eventData, result);
 
-        //        // Only do these things if mouse click was registered on minimap canvas
-        //        foreach (RaycastResult element in result)
-        //        {
-        //            if (element.gameObject.tag == "button")
-        //            {
-        //                Debug.Log("current pos:" + firstPerson.transform.position);
-        //                Vector3 temp;
-        //                temp.x = element.gameObject.GetComponent<buttonController>().correspondingCoordinates.x;
-        //                temp.z = element.gameObject.GetComponent<buttonController>().correspondingCoordinates.y;
-        //                temp.y = firstPerson.transform.position.y;
-        //                Debug.Log("new pos: " + temp);
-        //                firstPerson.transform.position = temp;
-        //                Debug.Log("after move: " + firstPerson.transform.position);
-        //            }
-        //            /*
-        //            Vector3 temp;
-        //            // Do conversion
-        //            temp.x = ConvertToCoords(eventData.position).x;
-        //            temp.z = ConvertToCoords(eventData.position).y;
-        //            temp.y = firstPerson.transform.position.y;
-
-        //            // Check surrounding
-        //            if (CheckSurrounding(temp) == false)
-        //                firstPerson.transform.position = temp;
-        //            */
-        //        }
-        //    }
-        //}
     }
+    
+    
 }
