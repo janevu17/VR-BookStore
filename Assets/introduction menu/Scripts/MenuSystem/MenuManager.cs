@@ -6,8 +6,6 @@ using UnityEngine.XR;
 
 public class MenuManager : MonoBehaviour
 {
-    
-    public UIManager canvasManager;
     //public CanvasType menuUI;
     public Panel currentPanel = null;
     public Panel mainPanel;
@@ -29,9 +27,6 @@ public class MenuManager : MonoBehaviour
         menuCanvas.enabled = false;
         
         SetupPanels();
-        
-
-        //canvasManager = UIManager.GetInstance();
     }
 
     private void SetupPanels()
