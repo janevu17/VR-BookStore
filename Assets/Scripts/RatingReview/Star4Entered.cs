@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Star4Entered : MonoBehaviour
 {
-    public int y;
+   /*for testing on pc
+    * public int y;
     private void Update()
     {
         if (y % 20 == 0)
@@ -13,7 +14,7 @@ public class Star4Entered : MonoBehaviour
             transform.parent.gameObject.GetComponent<RatingHighlight>().setCurrValue(xcount);
         }
         y++;
-    }
+    }*/
     public void setCurrValue()
     {
         transform.parent.gameObject.GetComponent<RatingHighlight>().setCurrValue(4);

@@ -44,10 +44,7 @@ public class RatingHighlight : MonoBehaviour
             {
                 star5.GetComponent<Renderer>().material.SetColor("_Color", Color.yellow);
             }
-            using (StreamWriter writetext = new StreamWriter("pastRating.txt"))
-            {
-                writetext.WriteLine(x.ToString());
-            }
+            System.IO.File.WriteAllText(Directory.GetCurrentDirectory() + "\\Assets\\Scripts\\RatingReview\\pastRating.txt", x.ToString());
         }
 
         
@@ -59,7 +56,7 @@ public class RatingHighlight : MonoBehaviour
         star3.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
         star4.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
         star5.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
-        setCurrValue(5);
+        //setCurrValue(5);
 
     }
 }
