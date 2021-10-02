@@ -110,6 +110,8 @@ public class item_list : MonoBehaviour
             //set amount 
             store_row.GetComponent<items_script>().itemAmount.text = item.GetComponent<ObjectController>().GetItemObject().GetAmount().ToString();
             Debug.Log("new item: " + store_row.GetComponent<items_script>().itemName.text + " hello");
+            //set item desc
+            store_row.GetComponent<items_script>().item_desc.text = item.GetComponent<ObjectController>().GetItemObject().GetInfo().ToString();
             //store a copy of row in temp list
             row_list.Add(store_row);
 

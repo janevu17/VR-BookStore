@@ -6,6 +6,7 @@ using UnityEngine.XR;
 
 public class MenuManager : MonoBehaviour
 {
+    //public CanvasType menuUI;
     public Panel currentPanel = null;
     public Panel mainPanel;
     private List<Panel> panelHistory = new List<Panel>();
@@ -18,18 +19,14 @@ public class MenuManager : MonoBehaviour
     */
 
     private Canvas menuCanvas;
-
-    //Controller Input Detection
-    private InputDevice device;
-    private bool buttonPress;
+   
 
     private void Start()
     {
         menuCanvas = GetComponent<Canvas>();
         menuCanvas.enabled = false;
-        device = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
-        buttonPress = false;
-        SetupPanels();    
+        
+        SetupPanels();
     }
 
     private void SetupPanels()
@@ -37,33 +34,11 @@ public class MenuManager : MonoBehaviour
         Panel[] panels = GetComponentsInChildren<Panel>();
         foreach (Panel panel in panels) 
             panel.Setup(this);
-        currentPanel.Show();    
+        currentPanel.Show();
+        //canvasManager.SwitchCanvas(CanvasType.MainMenu);
     }
 
-    private void Update()
-    {
-        //Click on MenuButton on LeftHand Controller to open the MenuUI
-        if ((device.TryGetFeatureValue(CommonUsages.menuButton, out buttonPress) && buttonPress) || Input.GetKeyDown("x"))
-        {
-            menuCanvas.enabled = true;
-            Pause();
-        }
-
-        /*
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            PauseUnpause();
-
-        }
-        */
-
-        /*
-        if (Input.GetMouseButton(0))
-        {
-            GoToPrevious();
-        }
-        */
-    }
+  
 
    public void Pause()
    {
