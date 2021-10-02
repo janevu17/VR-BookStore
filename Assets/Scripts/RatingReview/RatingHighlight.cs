@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class RatingHighlight : MonoBehaviour
@@ -42,6 +43,10 @@ public class RatingHighlight : MonoBehaviour
             if (x == 5)
             {
                 star5.GetComponent<Renderer>().material.SetColor("_Color", Color.yellow);
+            }
+            using (StreamWriter writetext = new StreamWriter("pastRating.txt"))
+            {
+                writetext.WriteLine(x.ToString());
             }
         }
 
