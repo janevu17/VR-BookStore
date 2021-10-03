@@ -14,12 +14,14 @@ public class InspectUIManager : MonoBehaviour
     public XRNode inputSource;
 
     //ItemInspection UI Elements
-    [SerializeField] private GameObject objectNameUI;
+    //[SerializeField] private GameObject inspectUIBG;
     [SerializeField] private Text objectNameText;
-    [SerializeField] private GameObject objectPriceUI;
+    //[SerializeField] private GameObject objectPriceUI;
     [SerializeField] private Text objectPriceText;
-    [SerializeField] private GameObject objectInfoUI;
+    //[SerializeField] private GameObject objectInfoUI;
     [SerializeField] private Text objectInfoText;
+
+    private Canvas inspectUI;
 
     //Controller Input Detection
     private InputDevice device;
@@ -32,9 +34,9 @@ public class InspectUIManager : MonoBehaviour
         device = InputDevices.GetDeviceAtXRNode(inputSource);
 
         //Disable ItemInspection UI 
-        objectNameUI.SetActive(false);
-        objectPriceUI.SetActive(false);
-        objectInfoUI.SetActive(false);
+        //inspectUIBG.SetActive(false);
+        inspectUI = transform.GetComponent<Canvas>();
+        inspectUI.enabled = false;
 
         //Initialize booleans for input detection
         gripPress = false;
@@ -48,7 +50,7 @@ public class InspectUIManager : MonoBehaviour
         {
             if (buttonPress != lastButtonPress)
             {
-                objectInfoUI.SetActive(!objectInfoUI.activeSelf);
+                //objectInfoUI.SetActive(!objectInfoUI.activeSelf);
             }
 
             lastButtonPress = buttonPress;
@@ -60,9 +62,12 @@ public class InspectUIManager : MonoBehaviour
     //Update and show object name and price
     public void ShowName(GameObject item)
     {
-        objectNameUI.SetActive(true);
-        objectPriceUI.SetActive(true);
+        inspectUI.enabled = true;
+        //objectPriceUI.SetActive(true);
 
+        //set item info
+        //objectInfoUI.SetActive(true);
+        objectInfoText.text = item.GetComponent<ObjectController>().GetItemObject().GetInfo();
         //set NameText to item name
         objectNameText.text = item.GetComponent<ObjectController>().GetItemObject().GetName();
 
@@ -76,8 +81,10 @@ public class InspectUIManager : MonoBehaviour
     {
         if (!gripPress)
         {
-            objectNameUI.SetActive(false);
-            objectPriceUI.SetActive(false);
+            inspectUI.enabled = false;
+            //inspectUIBG.SetActive(false);
+            //objectPriceUI.SetActive(false);
+            //objectInfoUI.SetActive(false);
         }
     }
 
@@ -85,8 +92,9 @@ public class InspectUIManager : MonoBehaviour
     //Update object info and gripPress
     public void GrabbedObject(GameObject item)
     {
-        objectNameUI.SetActive(true);
-        objectPriceUI.SetActive(true);
+        //inspectUIBG.SetActive(true);
+        //objectPriceUI.SetActive(true);
+        inspectUI.enabled = true;
 
         //set InfoText to item info
         objectInfoText.text = item.GetComponent<ObjectController>().GetItemObject().GetInfo();
@@ -98,7 +106,8 @@ public class InspectUIManager : MonoBehaviour
     public void DroppedObject()
     {
         gripPress = false; //User dropped object
-        objectNameUI.SetActive(false);
-        objectPriceUI.SetActive(false);
+        //inspectUIBG.SetActive(false);
+        //objectPriceUI.SetActive(false);
+        inspectUI.enabled = false;
     }
 }
