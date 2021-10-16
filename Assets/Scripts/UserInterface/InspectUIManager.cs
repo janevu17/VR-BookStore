@@ -67,12 +67,12 @@ public class InspectUIManager : MonoBehaviour
 
         //set item info
         //objectInfoUI.SetActive(true);
-        objectInfoText.text = item.GetComponent<ObjectController>().GetItemObject().GetInfo();
+        objectInfoText.text = item.GetComponent<ItemObject>().GetInfo();
         //set NameText to item name
-        objectNameText.text = item.GetComponent<ObjectController>().GetItemObject().GetName();
+        objectNameText.text = item.GetComponent<ItemObject>().GetName();
 
         //set PriceText to item price
-        objectPriceText.text = item.GetComponent<ObjectController>().GetItemObject().GetPrice().ToString();
+        objectPriceText.text = item.GetComponent<ItemObject>().GetPrice().ToString();
     }
 
     //OnHoverExited
@@ -97,7 +97,7 @@ public class InspectUIManager : MonoBehaviour
         inspectUI.enabled = true;
 
         //set InfoText to item info
-        objectInfoText.text = item.GetComponent<ObjectController>().GetItemObject().GetInfo();
+        objectInfoText.text = item.GetComponent<ItemObject>().GetInfo();
         gripPress = true; //User is holding object
     }
 

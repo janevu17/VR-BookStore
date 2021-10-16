@@ -5,80 +5,125 @@
  * Allows Checkout and ItemInspection scripts to easily retrieve an item's properties/details
  */
 [System.Serializable]
-public class ItemObject
+public class ItemObject : MonoBehaviour
 {
     /*
      * Add ID to constructor
      * Add getter and setter for ID
      */
     //ItemObject properties
-    private string name;
     private string ID; //unique item ID
-    private string info; //item description
-    private float price;
-    private int amount; //quantity in cart
+    private string Name;
+    private string Type;
+    private float Weight;
+    private string Size;
+    private string Dimension;
+    private string Info; //item description
+    private float Price;
+    private int Amount; //quantity in cart
+    private string Date;
 
     //ItemObject constructor
     public ItemObject(string itemName, string itemID, string itemInfo, float itemPrice, int itemAmount)
     {
-        name = itemName;
+        Name = itemName;
         ID = itemID;
-        info = itemInfo;
-        price = itemPrice;
-        amount = itemAmount;
+        Info = itemInfo;
+        Price = itemPrice;
+        Amount = itemAmount;
     }
 
     //Setters for each ItemObject property
-    public void SetName(string itemName)
-    {
-        name = itemName;
-    }
     public void SetID(string itemID)
     {
         ID = itemID;
     }
+    public void SetName(string itemName)
+    {
+        Name = itemName;
+    }
+    public void SetType(string itemType)
+    {
+        Type = itemType;
+    }
+    public void SetWeight(float itemWeight)
+    {
+        Weight = itemWeight;
+    }
+    public void SetSize(string itemSize)
+    {
+        Size = itemSize;
+    }
+    public void SetDimension(string itemDimension)
+    {
+        Dimension = itemDimension;
+    }
     public void SetInfo(string itemInfo)
     {
-        info = itemInfo;
+        Info = itemInfo;
     }
     public void SetPrice(float itemPrice)
     {
-        price = itemPrice;
+        Price = itemPrice;
     }
     public void SetAmount(int itemAmount)
     {
-        amount = itemAmount;
+        Amount = itemAmount;
+    }
+    public void SetDate(string itemDate)
+    {
+        Date = itemDate;
     }
 
     //Getters for each ItemObject property
-    public string GetName()
-    {
-        return name;
-    }
     public string GetID()
     {
         return ID;
     }
+    public string GetName()
+    {
+        return Name;
+    }
+    public new string GetType()
+    {
+        return Type;
+    }
+    public float GetWeight()
+    {
+        return Weight;
+    }
+    public string GetSize()
+    {
+        return Size;
+    }
+    public string GetDimension()
+    {
+        return Dimension;
+    }
     public string GetInfo()
     {
-        return info;
+        return Info;
     }
     public float GetPrice()
     {
-        return price;
+        return Price;
     }
     public int GetAmount()
     {
-        return amount;
+        return Amount;
+    }
+    public string GetDate()
+    {
+        return Date;
     }
 
-    //Increment/Decrement amount based on parameter value
+    //Increment/Decrement Amount based on parameter value
     public void IncrementAmount(int increment)
     {
-        amount += increment;
+        Amount += increment;
     }
     public void DecrementAmount(int decrement)
     {
-        amount -= decrement;
+        Amount -= decrement;
     }
 }

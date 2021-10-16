@@ -65,6 +65,9 @@ public class ItemManager : MonoBehaviour
 
     public TextAsset db;
     public GameObject itemprefab;
+    public Transform cameraOffset;
+    public GameObject itemInspection; //add inspectionUI to items
+    private GameObject inspect;
     bool notInstantiated;
     bool notSpawned;
     public Inventory inventory;
@@ -81,6 +84,7 @@ public class ItemManager : MonoBehaviour
     {
         notInstantiated = true;
         notSpawned = true;
+        inspect = Instantiate(itemInspection, cameraOffset);
     }
 
     // Update is called once per frame
@@ -97,26 +101,27 @@ public class ItemManager : MonoBehaviour
                 {
                     if (item.ToSpawn == 0)
                     {
-                        Debug.Log(item.ID + " " + item.Name + " " + item.Price + " " + item.Type + " " + item.Size);
+                        //Debug.Log(item.ID + " " + item.Name + " " + item.Price + " " + item.Type + " " + item.Size);
                         var go = Instantiate(copyprefab, Vector3.zero, Quaternion.identity);
-                        go.AddComponent<ObjectDetails>();
-                        go.GetComponent<ObjectDetails>().ID = item.ID;
-                        go.GetComponent<ObjectDetails>().Name = item.Name;
-                        go.GetComponent<ObjectDetails>().Type = item.Type;
-                        go.GetComponent<ObjectDetails>().Weight = item.Weight;
-                        go.GetComponent<ObjectDetails>().Size = item.Size;
-                        go.GetComponent<ObjectDetails>().Dimension = item.Dimension;
-                        go.GetComponent<ObjectDetails>().Info = item.Info;
-                        go.GetComponent<ObjectDetails>().Price = item.Price;
-                        go.GetComponent<ObjectDetails>().Amount = item.Amount;
-                        go.GetComponent<ObjectDetails>().Date = item.Date;
-                        go.name = go.GetComponent<ObjectDetails>().Name;
+                        go.GetComponent<InspectController>().SetInspectUI(inspect);
+                        go.AddComponent<ItemObject>();
+                        go.GetComponent<ItemObject>().SetID(item.ID);
+                        go.GetComponent<ItemObject>().SetName(item.Name);
+                        go.GetComponent<ItemObject>().SetType(item.Type);
+                        go.GetComponent<ItemObject>().SetWeight(item.Weight);
+                        go.GetComponent<ItemObject>().SetSize(item.Size);
+                        go.GetComponent<ItemObject>().SetDimension(item.Dimension);
+                        go.GetComponent<ItemObject>().SetInfo(item.Info);
+                        go.GetComponent<ItemObject>().SetPrice(item.Price);
+                        go.GetComponent<ItemObject>().SetAmount(item.Amount);
+                        go.GetComponent<ItemObject>().SetDate(item.Date);
+                        go.name = go.GetComponent<ItemObject>().GetName();
                         //go.tag = "Item";
                         // set gravity = false;
                         //go.GetComponent<Rigidbody>().useGravity = false;
 
                         Vector3 temp;
-                        switch (go.GetComponent<ObjectDetails>().Type)
+                        switch (go.GetComponent<ItemObject>().GetType())
                         {
                             case "Book":
                                 temp = GameObject.Find("BookSpawningPoint").transform.position;
@@ -124,7 +129,7 @@ public class ItemManager : MonoBehaviour
 
                                 break;
                             case "Clothing":
-                                if (go.GetComponent<ObjectDetails>().Name == "ASU Beanie")
+                                if (go.GetComponent<ItemObject>().GetName() == "ASU Beanie")
                                     temp = GameObject.Find("BeanieSpawningPoint").transform.position;
                                 else
                                     temp = GameObject.Find("HoodieSpawningPoint").transform.position;
@@ -175,26 +180,27 @@ public class ItemManager : MonoBehaviour
             {
                 if (item.ToSpawn > 0)
                 {
-                    Debug.Log(item.ID + " " + item.Name + " " + item.Price + " " + item.Type + " " + item.Size);
+                    //Debug.Log(item.ID + " " + item.Name + " " + item.Price + " " + item.Type + " " + item.Size);
                     var go = Instantiate(copyprefab, Vector3.zero, Quaternion.identity);
-                    go.AddComponent<ObjectDetails>();
-                    go.GetComponent<ObjectDetails>().ID = item.ID;
-                    go.GetComponent<ObjectDetails>().Name = item.Name;
-                    go.GetComponent<ObjectDetails>().Type = item.Type;
-                    go.GetComponent<ObjectDetails>().Weight = item.Weight;
-                    go.GetComponent<ObjectDetails>().Size = item.Size;
-                    go.GetComponent<ObjectDetails>().Dimension = item.Dimension;
-                    go.GetComponent<ObjectDetails>().Info = item.Info;
-                    go.GetComponent<ObjectDetails>().Price = item.Price;
-                    go.GetComponent<ObjectDetails>().Amount = item.Amount;
-                    go.name = go.GetComponent<ObjectDetails>().Name;
+                    go.GetComponent<InspectController>().SetInspectUI(inspect);
+                    go.AddComponent<ItemObject>();
+                    go.GetComponent<ItemObject>().SetID(item.ID);
+                    go.GetComponent<ItemObject>().SetName(item.Name);
+                    go.GetComponent<ItemObject>().SetType(item.Type);
+                    go.GetComponent<ItemObject>().SetWeight(item.Weight);
+                    go.GetComponent<ItemObject>().SetSize(item.Size);
+                    go.GetComponent<ItemObject>().SetDimension(item.Dimension);
+                    go.GetComponent<ItemObject>().SetInfo(item.Info);
+                    go.GetComponent<ItemObject>().SetPrice(item.Price);
+                    go.GetComponent<ItemObject>().SetAmount(item.Amount);
+                    go.name = go.GetComponent<ItemObject>().GetName();
                     //go.tag = "Item";
                     // set gravity = false;
                     //go.GetComponent<Rigidbody>().useGravity = false;
 
                     Vector3 temp;
                     bool isOccupied;
-                    switch (go.GetComponent<ObjectDetails>().Type)
+                    switch (go.GetComponent<ItemObject>().GetType())
                     {
                         case "Book":
                             temp = GameObject.Find("BookSpawningPoint").transform.position;
@@ -211,17 +217,17 @@ public class ItemManager : MonoBehaviour
 
                             break;
                         case "Clothing":
-                            if (go.GetComponent<ObjectDetails>().Name == "ASU Beanie")
+                            if (go.GetComponent<ItemObject>().GetName() == "ASU Beanie")
                                 temp = GameObject.Find("BeanieSpawningPoint").transform.position;
                             else
                                 temp = GameObject.Find("HoodieSpawningPoint").transform.position;
-                            Debug.Log(temp);
+                            //Debug.Log(temp);
                             isOccupied = CheckSurrounding(temp);
-                            Debug.Log(isOccupied);
+                            //Debug.Log(isOccupied);
                             while (isOccupied)
                             {
                                 temp.x = temp.x + 0.2f;
-                                Debug.Log(temp);
+                                //Debug.Log(temp);
                                 isOccupied = CheckSurrounding(temp);
                             }
                             go.transform.position = temp;
