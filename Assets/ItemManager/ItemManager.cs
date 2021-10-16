@@ -170,7 +170,7 @@ public class ItemManager : MonoBehaviour
         // Spawning in stock items
         foreach (Itemtype itemtype in inventory.inventory)
         {
-            Debug.Log(itemtype.type);
+            //Debug.Log(itemtype.type);
             foreach (Item item in itemtype.item)
             {
                 if (item.ToSpawn > 0)
