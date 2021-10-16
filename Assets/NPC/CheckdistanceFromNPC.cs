@@ -8,12 +8,14 @@ public class CheckdistanceFromNPC : MonoBehaviour
     public GameObject NPC;
     public float dist;
     public Animator anim;
-    public bool inOrbit = false; 
+    public bool inOrbit = false;
+    public AudioSource aSource;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        aSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -25,6 +27,7 @@ public class CheckdistanceFromNPC : MonoBehaviour
         {
             anim.SetBool("EnteredNPCArea",true);
             inOrbit = true;
+            aSource.Play();
         }
 
         if (dist >= 8)
