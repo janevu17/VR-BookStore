@@ -10,9 +10,4 @@ public class GoToChangingRoom : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
-    void Start()
-    {
-        Debug.Log("LOADING ROOM");
-        SceneManager.LoadScene(1);
-    }
 }
