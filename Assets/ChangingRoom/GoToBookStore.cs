@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class GoToBookStore : MonoBehaviour
 {
+    public GameObject camera;
     public void LoadGame()
     {
-        SceneManager.LoadScene(0);
+        camera.transform.position = new Vector3(47.21f, camera.transform.position.y, -26.07f);
     }
 }

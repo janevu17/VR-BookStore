@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class GoToChangingRoom : MonoBehaviour
 {
-    
+    public GameObject camera;
     public void LoadGame()
     {
-        SceneManager.LoadScene(1);
+        camera.transform.position = new Vector3(-101.0f, camera.transform.position.y, 6.85f);
     }
+
 }
