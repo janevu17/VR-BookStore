@@ -7,11 +7,13 @@ public enum CanvasType
 {
     MainMenu,
     miniMapUI,
-    checkoutUI
+    checkoutUI,
+    helpFaq_UI
 }
 
 public class UIManager : MonoBehaviour
 {
+    public CheckdistanceFromNPC distFromNPC;
     List<CanvasController> canvasControllerList;
     CanvasController lastActiveCanvas;
 
@@ -65,6 +67,11 @@ public class UIManager : MonoBehaviour
 
             }
 
+            if ( distFromNPC.inOrbit || Input.GetKeyDown("f"))
+            {
+                SwitchCanvas(CanvasType.helpFaq_UI);
+            }
+
         }
 
 
@@ -78,7 +85,7 @@ public class UIManager : MonoBehaviour
             lastActiveCanvas.gameObject.GetComponent<Canvas>().enabled = false;
         }
         CanvasController desiredCanvas = canvasControllerList.Find(x => x.canvasType == _type);
-        Debug.Log("Desire Canvas Printed: " + desiredCanvas.name);
+        //Debug.Log("Desire Canvas Printed: " + desiredCanvas.name);
         if (desiredCanvas != null)
         {
             desiredCanvas.gameObject.GetComponent<Canvas>().enabled = true;

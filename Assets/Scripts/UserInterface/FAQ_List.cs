@@ -33,7 +33,7 @@ public class FAQ_List : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print("my_faq_list size: "+ my_faq_list.Count);
+        //print("my_faq_list size: "+ my_faq_list.Count);
         if(my_faq_list.Count > i)
         {
             add_FAQ_to_list(i);
@@ -52,7 +52,7 @@ public class FAQ_List : MonoBehaviour
             else
             {
                 store_row = Instantiate(faq_row, transform);
-                print("my_faq_list[i].question: "+ my_faq_list[i].question);
+                //print("my_faq_list[i].question: "+ my_faq_list[i].question);
                 store_row.transform.Find("Question").GetComponent<Text>().text = my_faq_list[i].question;
                 store_row.transform.Find("Answer").GetComponent<Text>().text = my_faq_list[i].answer;
                 faq_row_list.Add(store_row);
