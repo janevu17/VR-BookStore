@@ -1,74 +1,9 @@
 fileFormatVersion: 2
-guid: 4084ac06b6dd998489b266af648c588c
+guid: a9b4213fe78dbeb48933e2a0635a61f9
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: FABRIC_1_FRONT_2458
-    second: {fileID: 2100000, guid: 13fc718961cc2264f8742b119c256e95, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: FABRIC_1_FRONT_2714
-    second: {fileID: 2100000, guid: 0a29d535e3776154eada3c4a367551f8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: FABRIC_1_FRONT_29213
-    second: {fileID: 2100000, guid: 2f05b28a3c5fc6c4fa31a5cee7bd1d3a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: M_Thomas_Sneaker_A_03_Male_Sneaker_02_opencollada_Female_Sn
-    second: {fileID: 2100000, guid: c0768c07ac0218c4883b5bb6832be778, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: M_Thomas_Sneaker_A_03_Male_Sneaker_02_opencollada_Female_Sneake
-    second: {fileID: 2100000, guid: f5c1682de61ce2d43b59accc647f529b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: arm
-    second: {fileID: 2100000, guid: a7b1b4ab19947124b8f8fbf13c3e0dac, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: body2
-    second: {fileID: 2100000, guid: 8684909f58ce7124eb1569e2c26e6f3d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: defaultMat1
-    second: {fileID: 2100000, guid: c69471015071bc44da3a86c8a43b4403, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: eye
-    second: {fileID: 2100000, guid: 13fcace86b1732645bd28b7bafefeed3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: eyelash
-    second: {fileID: 2100000, guid: 76dd42b538902a5469907b743e09bac6, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: face
-    second: {fileID: 2100000, guid: bf7836db8d393984cbfcc380a18899f1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: leg
-    second: {fileID: 2100000, guid: 16ee66422ab4fcf44817cdd51c2c21dd, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: toothSG1
-    second: {fileID: 2100000, guid: cdbc312b621ccd94aba091c69e0ea7ef, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0
